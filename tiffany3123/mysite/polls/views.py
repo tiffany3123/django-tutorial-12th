@@ -1,15 +1,20 @@
 from django.http import HttpResponse
 from .models import Question
 from django.shortcuts import render
+from django.views import generic
 from django.http import Http404
 
 # Create your views here.
-def detail(request, question_id):
-    try:
-        question = Question.objects.get(pk=question_id)
-    except Question.DoesNotExist:
-        raise Http404("Question does not exist")
-    return render(request, 'polls/detail.html', {'question': question})
+#def detail(request, question_id):
+ #   try:
+  #      question = Question.objects.get(pk=question_id)
+   # except Question.DoesNotExist:
+    #    raise Http404("Question does not exist")
+    #return render(request, 'polls/detail.html', {'question': question})
+
+class DetailView(generic.DetailView):
+    model = Question
+    template_name = 'polls/detail.html'
 
 def results(request, question_id):
     response = "You're looking at the results of question %s."
