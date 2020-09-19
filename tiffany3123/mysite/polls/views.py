@@ -24,6 +24,6 @@ def vote(request, question_id):
     return HttpResponse("You're voting on question %s." % question_id)
 
 def index(request):
-    latest_question_list = Question.objects.order_by('-pub_date')[:5] #데이터 베이스에서 데이터를 가져옴
+    latest_question_list = Question.objects.order_by('-pub_date')[:7] #데이터 베이스에서 데이터를 가져옴
     context = {'latest_question_list': latest_question_list} #html에 넘겨주기 위해 하나의 dictionary 로 만
     return render(request, 'polls/index.html', context) #그거를 html 에 넘겨줌
